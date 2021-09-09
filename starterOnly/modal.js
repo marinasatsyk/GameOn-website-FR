@@ -12,6 +12,12 @@ function editNav() {
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const inputIn = document.querySelectorAll('.text-control');
+const checkbox = document.querySelectorAll('.checkbox-input');
+
+
+
+
+
 
 const modalbg = document.querySelector(".bground");
 const submitBtn = document.querySelector('.btn-submit');
@@ -63,27 +69,46 @@ submitBtn.onclick = (event) => {
     // (2) Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.
     // (3) L'adresse électronique est valide.
     // (4) Pour le nombre de concours, une valeur numérique est saisie.
+    let radioChecked = false;
 
     inputIn.forEach(elem => {
-        console.dir(elem);
+        //console.dir(elem);
         if (elem.attributes.type.value == 'text' && elem.value.length < elem.attributes.minlength.value) {
-            elem.style.background = '#ff0000';
+            elem.style.background = '#ffbbbb';
         } else if (elem.attributes.type.value == 'email' && validateEmail(email.value) == false) {
-            elem.style.background = '#ff0000';
+            elem.style.background = '#ffbbbb';
             //alert("error mail");
         } else if (elem.attributes.type.value == 'date' && elem.value == '' || elem.value == undefined) {
-            elem.style.background = '#ff0000';
+            elem.style.background = '#ffbbbb';
 
         } else if (quantity.value == '') {
-            elem.style.background = '#ff0000';
+            elem.style.background = '#ffbbbb';
         }
 
 
+        for (item of checkbox) {
 
+            try {
+                if (item.attributes.type.value == 'radio' && item.checked == true) {
+                    radioChecked = true;
+                    break
+                }
+
+                //console.dir(item)
+
+            } catch (err) {
+                console.log(err)
+            }
+            //console.log(item.attributes.type.value)
+            // && item.attributes.checked.specified == true
+
+        }
 
 
     })
-
+    if (!radioChecked) {
+        console.log('error')
+    }
 
     // (5) Un bouton radio est sélectionné.
     // (6) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
