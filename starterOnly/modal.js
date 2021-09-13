@@ -13,8 +13,9 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const inputIn = document.querySelectorAll('.text-control');
 const checkbox = document.querySelectorAll('.checkbox-input');
+const checkboxAgree = document.getElementById('checkbox1');
 
-
+console.dir(checkboxAgree.checked);
 
 
 
@@ -28,16 +29,15 @@ const quantity = document.getElementById('quantity');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-inputIn.forEach(elem => elem.addEventListener("click", back));
+inputIn.forEach(elem => elem.addEventListener("click", back = () => {
+    elem.style.background = '#fff';
+}));
 
 // launch modal form
 function launchModal() {
     modalbg.style.display = "block";
 }
-//function back for bakground
-function back() {
-    inputIn.forEach(elem => elem.style.background = '#fff');
-}
+
 
 // ========= mes correction
 // first faire fonctionner le bouton de fermeture du menu
@@ -63,64 +63,65 @@ document.querySelector('.btn-close').onclick = close;
 
 submitBtn.onclick = (event) => {
     event.preventDefault();
-    console.log(event);
 
     //(1) Le champ Prénom a un minimum de 2 caractères / n'est pas vide.
     // (2) Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.
     // (3) L'adresse électronique est valide.
     // (4) Pour le nombre de concours, une valeur numérique est saisie.
+
+    let fisrtChecked = true;
+    let lastChecked = true;
+    let emailChecked = true;
+    let birthdateChecked = true;
+    let quantityChecked = true;
     let radioChecked = false;
+    let checkbox1Checked = true;
 
     inputIn.forEach(elem => {
-        //console.dir(elem);
+
         if (elem.attributes.type.value == 'text' && elem.value.length < elem.attributes.minlength.value) {
             elem.style.background = '#ffbbbb';
+            fisrtChecked = false;
+            lastChecked = false;
         } else if (elem.attributes.type.value == 'email' && validateEmail(email.value) == false) {
             elem.style.background = '#ffbbbb';
-            //alert("error mail");
+            emailChecked = false;
         } else if (elem.attributes.type.value == 'date' && elem.value == '' || elem.value == undefined) {
             elem.style.background = '#ffbbbb';
-
-        } else if (quantity.value == '') {
-            elem.style.background = '#ffbbbb';
+            birthdateChecked = false;
         }
-
-
-        for (item of checkbox) {
-
-            try {
-                if (item.attributes.type.value == 'radio' && item.checked == true) {
-                    radioChecked = true;
-                    break
-                }
-
-                //console.dir(item)
-
-            } catch (err) {
-                console.log(err)
-            }
-            //console.log(item.attributes.type.value)
-            // && item.attributes.checked.specified == true
-
-        }
-
-
     })
-    if (!radioChecked) {
-        console.log('error')
+
+    if (quantity.value == '') {
+        quantity.style.background = '#ffbbbb';
+        quantityChecked = false;
+    }
+
+    for (item of checkbox) {
+        if (item.attributes.type.value == 'radio' && item.checked == true) {
+            radioChecked = true;
+            break
+        }
+    }
+
+    if (checkboxAgree.checked == false) {
+        checkbox1Checked = false;
+    }
+
+    if (fisrtChecked == true &&
+        lastChecked == true &&
+        emailChecked == true &&
+        birthdateChecked == true &&
+        quantityChecked == true &&
+        radioChecked == true &&
+        checkbox1Checked == true) {
+        modalbg.style.display = "none";
+        welPage.style.display = "block";
     }
 
     // (5) Un bouton radio est sélectionné.
     // (6) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
-
-    // modalbg.style.display = "none";
-    // welPage.style.display = "block";
 }
-
-//======= disable background red
-
-
-
 
 
 
@@ -133,7 +134,6 @@ function verifText(event) {
         return false;
     }
 }
-
 
 function verifString() {
     inputIn.forEach(elem => {
@@ -160,7 +160,6 @@ inputIn.forEach(elem => {
     }
 
 });
-
 
 
 
