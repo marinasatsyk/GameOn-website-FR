@@ -15,14 +15,11 @@ const inputIn = document.querySelectorAll('.text-control');
 const checkbox = document.querySelectorAll('.checkbox-input');
 const checkboxAgree = document.getElementById('checkbox1');
 
-console.dir(checkboxAgree.checked);
-
-
-
 
 const modalbg = document.querySelector(".bground");
 const submitBtn = document.querySelector('.btn-submit');
 const welPage = document.querySelector('.bgWelcome');
+const btnWelcome = document.querySelector('.btnWelcome');
 
 const email = document.getElementById('email');
 const quantity = document.getElementById('quantity');
@@ -36,6 +33,7 @@ inputIn.forEach(elem => elem.addEventListener("click", back = () => {
 // launch modal form
 function launchModal() {
     modalbg.style.display = "block";
+
 }
 
 

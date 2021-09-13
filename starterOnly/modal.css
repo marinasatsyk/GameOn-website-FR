@@ -380,6 +380,30 @@ input[data-error]::after {
 }
 
 
+/* Welcome page */
+
+.contentWelcome {
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-bodyWelcome {
+    margin-top: 286px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.btnWelcome {
+    text-align: center;
+    padding: 12px 0px;
+    margin-bottom: 18px;
+}
+
+
 /* custom select styles */
 
 .custom-select {
