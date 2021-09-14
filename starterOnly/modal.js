@@ -15,6 +15,7 @@ const inputIn = document.querySelectorAll('.text-control');
 const checkbox = document.querySelectorAll('.checkbox-input');
 const checkboxAgree = document.getElementById('checkbox1');
 
+console.dir(formData);
 
 const modalbg = document.querySelector(".bground");
 const submitBtn = document.querySelector('.btn-submit');
@@ -26,9 +27,19 @@ const quantity = document.getElementById('quantity');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+//disable error warning
+formData.forEach(elem => elem.addEventListener("click", back = () => {
+    console.dir(elem);
+    elem.dataset.errorVisible = "false";
+
+}));
+
 inputIn.forEach(elem => elem.addEventListener("click", back = () => {
     elem.style.background = '#fff';
+
 }));
+
 
 // launch modal form
 function launchModal() {
@@ -81,29 +92,42 @@ submitBtn.onclick = (event) => {
             elem.style.background = '#ffbbbb';
             fisrtChecked = false;
             lastChecked = false;
+            formData[0].dataset.errorVisible = "true";
+            formData[1].dataset.errorVisible = "true";
+
         } else if (elem.attributes.type.value == 'email' && validateEmail(email.value) == false) {
             elem.style.background = '#ffbbbb';
             emailChecked = false;
+            formData[2].dataset.errorVisible = "true";
+
         } else if (elem.attributes.type.value == 'date' && elem.value == '' || elem.value == undefined) {
             elem.style.background = '#ffbbbb';
             birthdateChecked = false;
+            formData[3].dataset.errorVisible = "true";
         }
     })
 
     if (quantity.value == '') {
         quantity.style.background = '#ffbbbb';
         quantityChecked = false;
+        formData[4].dataset.errorVisible = "true";
     }
 
     for (item of checkbox) {
         if (item.attributes.type.value == 'radio' && item.checked == true) {
             radioChecked = true;
+            formData[5].dataset.errorVisible = "false";
             break
+        } else {
+            formData[5].dataset.errorVisible = "true";
         }
     }
 
+
     if (checkboxAgree.checked == false) {
         checkbox1Checked = false;
+        formData[6].dataset.errorVisible = "true";
+
     }
 
     if (fisrtChecked == true &&
@@ -115,6 +139,7 @@ submitBtn.onclick = (event) => {
         checkbox1Checked == true) {
         modalbg.style.display = "none";
         welPage.style.display = "block";
+
     }
 
     // (5) Un bouton radio est sélectionné.
