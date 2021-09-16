@@ -15,8 +15,6 @@ const inputIn = document.querySelectorAll('.text-control');
 const checkbox = document.querySelectorAll('.checkbox-input');
 const checkboxAgree = document.getElementById('checkbox1');
 
-console.dir(formData);
-
 const modalbg = document.querySelector(".bground");
 const submitBtn = document.querySelector('.btn-submit');
 const welPage = document.querySelector('.bgWelcome');
@@ -30,14 +28,11 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 //disable error warning
 formData.forEach(elem => elem.addEventListener("click", back = () => {
-    console.dir(elem);
     elem.dataset.errorVisible = "false";
-
 }));
 
 inputIn.forEach(elem => elem.addEventListener("click", back = () => {
     elem.style.background = '#fff';
-
 }));
 
 // launch modal form
@@ -85,14 +80,17 @@ submitBtn.onclick = (event) => {
     let checkbox1Checked = true;
 
     inputIn.forEach(elem => {
+        console.dir(elem)
 
-        if (elem.attributes.type.value == 'text' && elem.value.length < elem.attributes.minlength.value) {
+        if (elem.id == 'first' && elem.value.length < elem.attributes.minlength.value) {
             elem.style.background = '#ffbbbb';
             fisrtChecked = false;
-            lastChecked = false;
             formData[0].dataset.errorVisible = "true";
-            formData[1].dataset.errorVisible = "true";
 
+        } else if (elem.id == 'last' && elem.value.length < elem.attributes.minlength.value) {
+            elem.style.background = '#ffbbbb';
+            lastChecked = false;
+            formData[1].dataset.errorVisible = "true";
         } else if (elem.attributes.type.value == 'email' && validateEmail(email.value) == false) {
             elem.style.background = '#ffbbbb';
             emailChecked = false;
@@ -121,7 +119,6 @@ submitBtn.onclick = (event) => {
         }
     }
 
-
     if (checkboxAgree.checked == false) {
         checkbox1Checked = false;
         formData[6].dataset.errorVisible = "true";
@@ -139,7 +136,6 @@ submitBtn.onclick = (event) => {
         welPage.style.display = "block";
 
     }
-
     // (5) Un bouton radio est sélectionné.
     // (6) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
 }
@@ -161,7 +157,6 @@ function verifString() {
         if (+elem.value == 'number') {
             return false;
         }
-
     })
 }
 
@@ -181,8 +176,6 @@ inputIn.forEach(elem => {
     }
 
 });
-
-
 
 //verification email
 function validateEmail(email) {

@@ -13,7 +13,8 @@
 <body>
     <div class="topnav" id="myTopnav">
         <div class="header-logo">
-            <img alt="logo" src="Logo.png" width="auto" height="auto" />
+            <img alt="logo" src="Logo.png" />
+            <!-- width="auto" height="auto" -->
         </div>
         <div class="main-navbar">
 
@@ -22,12 +23,13 @@
             <a href="#"><span>À propos</span></a>
             <a href="#"><span>Contact</span></a>
             <a href="#"><span>Évènements passés</span></a>
+
             <a href="javascript:void(0);" class="icon" onclick="editNav()">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
     </div>
-    </div>
+
     <main>
         <div class="hero-section">
             <div class="hero-content">
@@ -56,24 +58,24 @@
                     <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
                         <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prenom" data-error-visible="false">
                             <label for="first">Prénom</label><br>
-                            <input class="text-control" type="text" id="first" name="first" minlength="2" /><br>
-                            <!-- <div class="alert">Vous devez saisir minimum 2 caractéres</div> -->
+                            <input class="text-control" type="text" id="first" name="first" minlength="2" required /><br>
+
                         </div>
                         <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom">
                             <label for="last">Nom</label><br>
-                            <input class="text-control" type="text" id="last" name="last" minlength="2" /><br>
+                            <input class="text-control" type="text" id="last" name="last" minlength="2" required /><br>
                         </div>
                         <div class="formData" data-error="Veuillez entrer email correct">
                             <label for="email">E-mail</label><br>
-                            <input class="text-control" type="email" id="email" name="email" /><br>
+                            <input class="text-control" type="email" id="email" name="email" required /><br>
                         </div>
                         <div class="formData" data-error="Vous devez entrer votre date de naissance">
                             <label for="birthdate">Date de naissance</label><br>
-                            <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+                            <input class="text-control" type="date" id="birthdate" name="birthdate" required /><br>
                         </div>
                         <div class="formData" data-error="Veuillez entrer un nombre à partir de 0" data-error-visible="false">
                             <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                            <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                            <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
                         </div>
                         <p class="text-label">Quelles villes ?</p>
                         <div class="formData" data-error="Vous devez choisir une option.">
@@ -104,8 +106,8 @@
                         </div>
 
                         <div class="formData" data-error="Vous devez vérifier que vous acceptez les termes et conditions.">
-                            <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
-                            <label class="checkbox2-label" for="checkbox1" required>
+                            <input class="checkbox-input" type="checkbox" id="checkbox1" checked required />
+                            <label class="checkbox2-label" for="checkbox1">
                                 <span class="checkbox-icon"></span>
                                 J'ai lu et accepté les conditions d'utilisation.
                             </label>
@@ -117,7 +119,7 @@
                             </label>
                             <br>
                         </div>
-                        <input class="btn-submit" type="submit" class="button" value="C'est parti" />
+                        <input class="btn-submit button" type="submit" value="C'est parti" />
                     </form>
                 </div>
             </div>
